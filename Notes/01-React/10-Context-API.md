@@ -1,76 +1,54 @@
-Sure, here's a comprehensive example of how to use the Context API in React, covering creating context, providing context, consuming context, using context with class components, and updating context.
+
+# Context API with functional components in React.
 
 ```jsx
-// Import necessary modules
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
-// Step 1: Creating Context
-const MyContext = createContext();
+// Creating Context
+const ThemeContext = createContext();
 
-// Step 2: Providing Context
-const MyProvider = ({ children }) => {
-  const [value, setValue] = useState('Initial Value');
+// Providing Context
+const ThemeProvider = ({ children }) => {
+  const [theme, setTheme] = useState('light');
 
-  return (
-    <MyContext.Provider value={{ value, setValue }}>
-      {children}
-    </MyContext.Provider>
-  );
-};
-
-// Step 3: Consuming Context
-const MyComponent = () => {
-  const { value, setValue } = useContext(MyContext);
-
-  return (
-    <div>
-      <p>Value from context: {value}</p>
-      <button onClick={() => setValue('New Value')}>Change Value</button>
-    </div>
-  );
-};
-
-// Step 4: Using Context with Class Components
-class ClassComponent extends React.Component {
-  static contextType = MyContext;
-
-  render() {
-    const { value, setValue } = this.context;
-
-    return (
-      <div>
-        <p>Value from context: {value}</p>
-        <button onClick={() => setValue('New Value')}>Change Value</button>
-      </div>
-    );
-  }
-}
-
-// Step 5: Updating Context
-const UpdateContextComponent = () => {
-  const { setValue } = useContext(MyContext);
-
-  const handleUpdate = () => {
-    setValue('Updated Value');
+  const toggleTheme = () => {
+    setTheme(prevTheme => (prevTheme === 'light' ? 'dark' : 'light'));
   };
 
   return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+};
+
+// Consuming Context
+const ThemeConsumer = () => {
+  const { theme, toggleTheme } = useContext(ThemeContext);
+
+  return (
     <div>
-      <button onClick={handleUpdate}>Update Context Value</button>
+      <p>Current Theme: {theme}</p>
+      <button onClick={toggleTheme}>Toggle Theme</button>
     </div>
   );
 };
 
-// Step 6: Wrap your application with MyProvider
+// Context with Class Components (Optional)
+// You can use ThemeContext.Consumer instead of ThemeConsumer component
+
+// Updating Context
+// You can update the context value directly inside a functional component using useState
+// Or using a class component, you can use ThemeContext.Consumer or static contextType
+
 const App = () => {
   return (
-    <MyProvider>
+    <ThemeProvider>
       <div>
-        <MyComponent />
-        <ClassComponent />
-        <UpdateContextComponent />
+        <h1>Theme Toggler</h1>
+        <ThemeConsumer />
       </div>
-    </MyProvider>
+    </ThemeProvider>
   );
 };
 
@@ -79,14 +57,12 @@ export default App;
 
 Explanation:
 
-1. **Creating Context**: Use `createContext()` to create a new context. This creates a context object which consists of a Provider and a Consumer component.
+1. **Creating Context**: The `createContext` function is used to create a context object. This context object will be used to share data between components.
 
-2. **Providing Context**: Wrap your components that need access to the context with the Provider component. The Provider component takes a `value` prop, which is the data you want to share with the components.
+2. **Providing Context**: The `ThemeProvider` component is created to provide the context to its child components. It wraps its children with `ThemeContext.Provider` and passes down the `theme` and `toggleTheme` values using the `value` prop.
 
-3. **Consuming Context**: Use the `useContext` hook to consume the context within functional components. This allows you to access the value provided by the context provider.
+3. **Consuming Context**: The `ThemeConsumer` component consumes the context using the `useContext` hook. It retrieves the `theme` and `toggleTheme` values from the context and uses them to render UI elements.
 
-4. **Using Context with Class Components**: For class components, you can use the `static contextType` property to access the context. This allows you to access the context value through `this.context`.
+4. **Context with Class Components (Optional)**: If you want to use context with class components, you can use `ThemeContext.Consumer` or the `static contextType` property.
 
-5. **Updating Context**: To update the context, you can use functions provided by the context. In this example, `setValue` function is provided by the context, which allows you to update the context value.
-
-6. **Wrap your application with the Provider**: Finally, wrap your entire application or the relevant part of your application with the Provider component to make the context available to all the components within the wrapped hierarchy.
+5. **Updating Context**: You can update the context value directly inside functional components using `useState`. In class components, you can update the context value using `ThemeContext.Consumer` or `static contextType`.
