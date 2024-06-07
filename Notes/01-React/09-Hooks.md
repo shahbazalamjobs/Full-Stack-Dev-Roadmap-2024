@@ -4,7 +4,7 @@
 
 Certainly! Let's focus on the `useState` hook:
 
-### useState Hook
+# 1. useState Hook
 
 The `useState` hook is a built-in React hook that allows functional components to manage state. It returns an array with two elements:
 
@@ -61,7 +61,7 @@ Certainly! Let's dive deeper into the `useEffect` hook, covering its usage, clea
 ---
 
 
-### Usage of `useEffect`
+# 2. Usage of `useEffect`
 
 The `useEffect` hook allows you to perform side effects in your function components. Side effects can be data fetching, subscriptions, or manually changing the DOM (like updating the document title).
 
@@ -249,3 +249,111 @@ export default WebSocketComponent;
 - **Cleanup Function**: Cleans up the effect, runs before the next effect or component unmount.
 - **Dependency Array**: Controls when the effect runs, based on changes to specified dependencies.
 - `useEffect` is powerful for managing side effects in function components, replacing the lifecycle methods in class components, and promoting a more functional approach to React development.
+
+
+---
+
+
+# 3. `useCallback`
+
+### What is useCallback?
+
+- useCallback is a React hook used to memoize functions.
+- It returns a memoized version of the callback function that only changes if one of the dependencies has changed.
+- It's useful for optimizing performance by avoiding unnecessary re-renders in child components.
+
+```jsx
+import React, { useState, useCallback } from 'react';
+
+const Button = ({ onClick, children }) => {
+  console.log('Button rendering');
+  return <button onClick={onClick}>{children}</button>;
+};
+
+const ParentComponent = () => {
+  const [count, setCount] = useState(0);
+
+  // Define a callback function using useCallback
+  const handleClick = useCallback(() => {
+    setCount(count + 1);
+  }, [count]); // Dependency is count
+
+  return (
+    <div>
+      <h1>Count: {count}</h1>
+      <Button onClick={handleClick}>Increment</Button>
+    </div>
+  );
+};
+
+export default ParentComponent;
+```
+
+Explanation:
+
+- `handleClick` is a callback function that increments the `count` state by 1.
+- It is memoized using `useCallback`. The callback is recreated only when the `count` state changes.
+- The `Button` component receives `onClick` as a prop, which is the memoized `handleClick` function. This ensures that `Button` does not re-render unnecessarily when the `count` changes, optimizing performance.
+
+
+
+---
+
+# 4. `useReducer` hook in React:
+
+1. **What is `useReducer`?**
+   - `useReducer` is one of the built-in React hooks used for state management.
+   - It is an alternative to `useState` for managing more complex state logic.
+   - It accepts a reducer function and an initial state as arguments and returns the current state and a dispatch function.
+
+2. **Syntax:**
+   ```javascript
+   const [state, dispatch] = useReducer(reducer, initialState);
+   ```
+
+   - `reducer`: A function that takes the current state and an action as arguments and returns a new state based on the action. It follows the signature `(state, action) => newState`.
+   - `initialState`: The initial state of the component.
+
+3. **Example:**
+   ```javascript
+   import React, { useReducer } from 'react';
+
+   const initialState = { count: 0 };
+
+   const reducer = (state, action) => {
+     switch (action.type) {
+       case 'increment':
+         return { count: state.count + 1 };
+       case 'decrement':
+         return { count: state.count - 1 };
+       default:
+         throw new Error();
+     }
+   };
+
+   const Counter = () => {
+     const [state, dispatch] = useReducer(reducer, initialState);
+
+     return (
+       <div>
+         Count: {state.count}
+         <button onClick={() => dispatch({ type: 'increment' })}>Increment</button>
+         <button onClick={() => dispatch({ type: 'decrement' })}>Decrement</button>
+       </div>
+     );
+   };
+
+   export default Counter;
+   ```
+
+4. **When to use `useReducer`?**
+   - `useReducer` is useful when the state logic is complex or involves multiple sub-values.
+   - It's a good choice when the next state depends on the previous one and requires more than a simple update.
+
+5. **Benefits:**
+   - It provides a centralized way to manage state updates, making the code more predictable and easier to debug.
+   - It facilitates managing complex state transitions and logic.
+
+6. **Drawbacks:**
+   - It may be overkill for managing simple state updates, where `useState` might be more appropriate.
+   - The initial setup and understanding of reducers might be more complex compared to `useState`.
