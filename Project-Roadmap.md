@@ -179,7 +179,7 @@ By following these points and subpoints, you can effectively implement the featu
 ---
 
 
-Sure, here's a detailed directory structure for the frontend of the project using React, React Router, Redux Toolkit, and other libraries:
+# Frontend Directory
 
 ```
 frontend/
@@ -274,7 +274,7 @@ frontend/
 ---
 
 
-# Frontend Directory
+# Backend Directory
 
 ```
 backend/
