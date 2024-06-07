@@ -103,3 +103,8 @@ ReactDOM.render(
 ```
 
 These are the basic steps to set up Redux Toolkit in a React application. It simplifies many aspects of Redux development by providing utilities like `createSlice` and `configureStore`.
+
+
+---
+
+ More Details: https://github.com/shahbazalamjobs/Redux-toolkit-basics
