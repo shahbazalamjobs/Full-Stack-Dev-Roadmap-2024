@@ -93,7 +93,7 @@ Becoming a Full Stack Developer using the PERN stack (PostgreSQL, Express.js, Re
 ---
 
 
-# In-depth list of topics and subtopics for learning React.js:
+# React.js:
 
 ### 1. **Components**
    - **Functional Components**
