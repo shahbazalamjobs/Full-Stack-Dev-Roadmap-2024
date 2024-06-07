@@ -58,7 +58,10 @@ export default Counter;
 
 Certainly! Let's dive deeper into the `useEffect` hook, covering its usage, cleanup mechanism, and advanced scenarios.
 
-### Detailed Usage of `useEffect`
+---
+
+
+### Usage of `useEffect`
 
 The `useEffect` hook allows you to perform side effects in your function components. Side effects can be data fetching, subscriptions, or manually changing the DOM (like updating the document title).
 
