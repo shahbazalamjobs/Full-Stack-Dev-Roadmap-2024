@@ -88,23 +88,3 @@ Becoming a Full Stack Developer using the PERN stack (PostgreSQL, Express.js, Re
 3. **Advanced Stage**: Delve into advanced concepts in React and Node.js, learn authentication, security, and testing.
 4. **Deployment and DevOps**: Learn version control, CI/CD, and deployment strategies.
 5. **Polishing Skills**: Work on personal or open-source projects, contribute to repositories, and continually refine and update your skills.
-
-### Resources
-
-- **Courses**: 
-  - FreeCodeCamp
-  - Codecademy
-  - Udemy (e.g., "The Complete Web Developer in 2023: Zero to Mastery")
-  - Coursera
-- **Books**: 
-  - "Eloquent JavaScript" by Marijn Haverbeke
-  - "You Don't Know JS" by Kyle Simpson
-  - "Learning React" by Alex Banks & Eve Porcello
-- **Documentation**:
-  - MDN Web Docs for HTML/CSS/JavaScript
-  - React Official Documentation
-  - Express.js Official Documentation
-  - PostgreSQL Official Documentation
-
-By following this roadmap and consistently practicing through projects, you will be well on your way to becoming a proficient Full Stack Developer with the PERN stack.
-
