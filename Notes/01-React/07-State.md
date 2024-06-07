@@ -1,5 +1,5 @@
 
-# Hooks
+# State
 
 Certainly! Below are examples of how to handle state in functional components using hooks (particularly `useState`) in React.
 
