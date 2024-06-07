@@ -274,3 +274,46 @@ frontend/
 ---
 
 
+# Frontend Directory
+
+```
+backend/
+│
+├── config/
+│   ├── config.js
+│   └── ...
+│
+├── controllers/
+│   ├── authController.js
+│   ├── taskController.js
+│   └── ...
+│
+├── middleware/
+│   ├── authMiddleware.js
+│   ├── errorMiddleware.js
+│   └── ...
+│
+├── models/
+│   ├── user.js
+│   ├── task.js
+│   └── ...
+│
+├── routes/
+│   ├── authRoutes.js
+│   ├── taskRoutes.js
+│   └── ...
+│
+├── services/
+│   ├── authService.js
+│   ├── taskService.js
+│   └── ...
+│
+├── utils/
+│   ├── jwt.js
+│   └── ...
+│
+├── app.js
+├── server.js
+└── ...
+```
+
