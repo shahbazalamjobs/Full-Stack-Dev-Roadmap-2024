@@ -357,3 +357,78 @@ Explanation:
 6. **Drawbacks:**
    - It may be overkill for managing simple state updates, where `useState` might be more appropriate.
    - The initial setup and understanding of reducers might be more complex compared to `useState`.
+
+
+---
+
+
+# 5 `useMemo`
+
+1. **What is `useMemo`?**
+   - `useMemo` is a React hook used for memoizing expensive computations.
+   - It memoizes the result of a function and re-computes it only if one of the dependencies has changed.
+   - It's useful for optimizing performance by avoiding unnecessary re-calculations.
+
+2. **Syntax:**
+   ```javascript
+   const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+   ```
+
+   - The first argument is a function that performs the expensive computation.
+   - The second argument is an array of dependencies. The memoized value is re-computed only if any of these dependencies change.
+
+3. **Example:**
+   ```javascript
+   import React, { useMemo } from 'react';
+
+   const MyComponent = ({ a, b }) => {
+     const memoizedValue = useMemo(() => {
+       // Expensive computation
+       return a * b;
+     }, [a, b]); // Dependencies are a and b
+
+     return <div>Result: {memoizedValue}</div>;
+   };
+
+   export default MyComponent;
+   ```
+
+
+---   
+
+# 6 `useRef`
+
+1. **What is `useRef`?**
+   - `useRef` is a React hook used to create mutable references that persist across renders.
+   - It returns a mutable ref object with a `.current` property that can be assigned any value.
+   - It's commonly used to access or store a reference to a DOM element or to persist values between renders without causing re-renders.
+
+2. **Syntax:**
+   ```javascript
+   const myRef = useRef(initialValue);
+   ```
+
+   - The argument `initialValue` is optional and sets the initial value of the ref object.
+
+3. **Example:**
+   ```javascript
+   import React, { useRef, useEffect } from 'react';
+
+   const MyComponent = () => {
+     const inputRef = useRef(null);
+
+     useEffect(() => {
+       // Focus the input element on mount
+       inputRef.current.focus();
+     }, []);
+
+     return <input ref={inputRef} />;
+   };
+
+   export default MyComponent;
+   ```
+
+In summary:
+
+- Use `useMemo` for memoizing expensive computations and preventing unnecessary re-calculations.
+- Use `useRef` for creating mutable references that persist across renders, particularly for accessing or storing references to DOM elements or persisting values between renders without causing re-renders.
